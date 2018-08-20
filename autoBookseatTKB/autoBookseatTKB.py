@@ -30,6 +30,21 @@ driver.find_element_by_id("logininputcode").send_keys(LonginSecurityCode)
 
 driver.find_element_by_link_text(u"送出").click()
 
+
+def wait_until_tomorrow():
+    """Wait until tommorow 00:00 am"""
+
+    import time
+    tomorrow = datetime.datetime.replace(datetime.datetime.now() + datetime.timedelta(days=1), 
+                         hour=0, minute=0, second=0)
+    delta = tomorrow - datetime.datetime.now()
+    print("sleep for " + str(delta.seconds) + " seconds...")
+    time.sleep(delta.seconds)
+
+
+wait_until_tomorrow()
+driver.refresh()
+
 driver.find_element_by_id("class_selector").click()
 Select(driver.find_element_by_id("class_selector")).select_by_index(settings['classIndex'])
 driver.find_element_by_id("class_selector").click()
