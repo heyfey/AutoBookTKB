@@ -7,9 +7,9 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class AutoBookseatTKB:
 
-    def __init__(self):
+    def __init__(self, settings):
         import json
-        with open('autoBookseatTKB-settings.json', 'r', encoding="utf-8") as fp:
+        with open(settings, 'r', encoding="utf-8") as fp:
             self.settings = json.load(fp)
         with open('locationList.json', 'r', encoding="utf-8") as fp:
             self.location_list = json.load(fp)
@@ -101,7 +101,7 @@ class AutoBookseatTKB:
 
 if __name__ == '__main__':
     print("Mission started...")
-    atb = AutoBookseatTKB()
+    atb = AutoBookseatTKB('autoBookseatTKB-settings.json')
     atb.login()
 
     atb.wait_until_tomorrow()
@@ -114,3 +114,5 @@ if __name__ == '__main__':
     atb.select_sessions()
     atb.click_send()
     atb.accept_alert()
+
+    
