@@ -11,9 +11,8 @@ with open('autoBookseatTKB-settings.json', 'r', encoding="utf-8") as fp:
 with open('locationList.json', 'r', encoding="utf-8") as fp:
     location_list = json.load(fp)
 
-if settings['date'] is "":
-    import datetime
-    date = datetime.date.today() + datetime.timedelta(days=6) # select the newest date
+import datetime
+date = datetime.date.today() + datetime.timedelta(days=6) # select the newest date
 
 driver = webdriver.Chrome()
 
