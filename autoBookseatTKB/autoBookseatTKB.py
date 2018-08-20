@@ -58,6 +58,6 @@ for i in settings['session']:
     if driver.find_elements_by_xpath('//input[@value="%d"]' % i):
         driver.find_element_by_xpath('//input[@value="%d"]' % i).click()
 
-#driver.find_element_by_link_text(u"送出").click()
-#alert = driver.switch_to_alert()
-#alert.accept()
+driver.find_element_by_link_text(u"送出").click()
+alert = driver.switch_to_alert()
+alert.accept()
