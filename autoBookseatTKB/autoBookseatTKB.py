@@ -21,11 +21,12 @@ class AutoBookseatTKB:
         self.driver = webdriver.Chrome()
         self.driver.get("http://bookseat.tkblearning.com.tw/book-seat/student/bookSeat/index")
 
-        self.wait = WebDriverWait(self.driver, 30)
+        self.wait = WebDriverWait(self.driver, 60)
 
     def login(self):
         self.driver.find_element_by_id("id").clear()
         self.driver.find_element_by_id("id").send_keys(self.settings['id'])
+
         self.driver.find_element_by_id("pwd").clear()
         self.driver.find_element_by_id("pwd").send_keys(self.settings['password'])
 
@@ -34,8 +35,10 @@ class AutoBookseatTKB:
         code = self.driver.execute_script("return LonginSecurityCode;")
         self.driver.find_element_by_id("logininputcode").send_keys(code)
 
-        self.driver.find_element_by_link_text(u"送出").click()
+        self.click_send()
 
+    def click_send(self):
+        self.driver.find_element_by_link_text(u"送出").click()
 
     def wait_until_tomorrow(self):
         """Wait until tommorow 00:00 am"""
@@ -90,9 +93,6 @@ class AutoBookseatTKB:
         for i in self.settings['sessions']:
             if self.driver.find_elements_by_xpath('//input[@value="%d"]' % i):
                 self.driver.find_element_by_xpath('//input[@value="%d"]' % i).click()
-
-    def click_send(self):
-        self.driver.find_element_by_link_text(u"送出").click()
 
     def accept_alert(self):
         alert = self.driver.switch_to_alert()
