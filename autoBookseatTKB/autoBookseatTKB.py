@@ -41,12 +41,13 @@ class AutoBookseatTKB:
         self.driver.find_element_by_link_text(u"送出").click()
 
     def wait_until_tomorrow(self):
-        """Wait until tommorow 00:00 am"""
+        """Wait until tommorow 00:00:01 am"""
         import datetime, time
         tomorrow = datetime.datetime.replace(
             datetime.datetime.now() + datetime.timedelta(days=1), 
-            hour=0, minute=0, second=0)
+            hour=0, minute=0, second=1)
         delta = tomorrow - datetime.datetime.now()
+        print("Current time : " + time.strftime("%Y-%m-%d %H:%M:%S"))
         print("Sleep for " + str(delta.seconds) + " seconds..."
             "do not close this window and the web driver.")
         time.sleep(delta.seconds)
