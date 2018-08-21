@@ -62,7 +62,7 @@ class AutoBookseatTKB:
         Select(element).select_by_index(self.settings['classIndex'])
         element.click()
 
-    def enter_securitycode(self):
+    def send_securitycode(self):
         element = self.driver.find_element_by_id("userinputcode")
         element.click()
         element.clear()
@@ -123,7 +123,7 @@ if __name__ == '__main__':
     atb.refresh()
 
     atb.select_class()
-    atb.enter_securitycode()
+    atb.send_securitycode()
     atb.select_location()
     atb.select_date()
     atb.select_sessions()
