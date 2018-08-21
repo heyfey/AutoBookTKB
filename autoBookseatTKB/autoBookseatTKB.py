@@ -14,10 +14,6 @@ class AutoBookseatTKB:
         with open('locationList.json', 'r', encoding="utf-8") as fp:
             self.location_list = json.load(fp)
 
-        import datetime
-        # select the newest date
-        self.date = datetime.date.today() + datetime.timedelta(days=6)
-
         self.driver = webdriver.Chrome()
         self.driver.get("http://bookseat.tkblearning.com.tw/book-seat/student/bookSeat/index")
 
@@ -45,11 +41,11 @@ class AutoBookseatTKB:
         element.click()
 
     def wait_until_tomorrow(self):
-        """Wait until tommorow 00:00:01 am"""
+        """Wait until tommorow 00:00:00 am"""
         import datetime, time
         tomorrow = datetime.datetime.replace(
             datetime.datetime.now() + datetime.timedelta(days=1), 
-            hour=0, minute=0, second=1)
+            hour=0, minute=0, second=0)
         delta = tomorrow - datetime.datetime.now()
         print("Current time : " + time.strftime("%Y-%m-%d %H:%M:%S"))
         print("Sleep for " + str(delta.seconds) + " seconds..."
@@ -87,17 +83,20 @@ class AutoBookseatTKB:
         element.click()
 
     def select_date(self):
+        """Select the newest date."""
+        import datetime
+        date = datetime.date.today() + datetime.timedelta(days=6)
+
         element = self.wait.until(
             EC.presence_of_element_located((
                 By.CSS_SELECTOR, 
-                "option[value='%d-%02d-%02d']" % (self.date.year, 
-                                                  self.date.month, 
-                                                  self.date.day)
+                "option[value='%d-%02d-%02d']" % (date.year, date.month, 
+                                                  date.day)
             ))
         )
         element = self.driver.find_element_by_id("date_selector")
         element.click()
-        Select(element).select_by_value(str(self.date))
+        Select(element).select_by_value(str(date))
         element.click()
 
     def select_sessions(self):
