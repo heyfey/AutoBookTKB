@@ -104,7 +104,6 @@ class AutoBookseatTKB:
             EC.presence_of_element_located((By.ID, "session_time_div"))
         )
         element = self.driver.find_element_by_name("session_time")
-        element.click()
         for i in self.settings['sessions']:
             if self.driver.find_elements_by_xpath('//input[@value="%d"]' % i):
                 self.driver.find_element_by_xpath('//input[@value="%d"]' % i).click()
