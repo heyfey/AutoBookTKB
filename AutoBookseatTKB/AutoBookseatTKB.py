@@ -128,5 +128,5 @@ if __name__ == '__main__':
     atb.select_sessions()
     atb.click_send()
     atb.accept_alert()
-
+    print("Task completed. Plese check your booking:)")
     
