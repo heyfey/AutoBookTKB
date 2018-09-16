@@ -1,3 +1,5 @@
+# !/usr/bin/python
+# -*-coding:utf-8 -*-
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 
@@ -115,7 +117,7 @@ class AutoBookseatTKB:
 
 if __name__ == '__main__':
     print("Mission started...")
-    atb = AutoBookseatTKB('autoBookseatTKB-settings.json')
+    atb = AutoBookseatTKB('AutoBookseatTKB-settings.json')
     atb.login()
 
     atb.wait_until_tomorrow()
