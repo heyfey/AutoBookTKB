@@ -42,13 +42,20 @@ class AutoBookseatTKB:
         element = self.driver.find_element_by_link_text(u"送出")
         element.click()
 
-    def wait_until_tomorrow(self):
-        """Wait until tommorow 00:00:00 am"""
+    def wait_until_noon_or_midnight(self):
         import datetime, time
-        tomorrow = datetime.datetime.replace(
+        midnight = datetime.datetime.replace(
             datetime.datetime.now() + datetime.timedelta(days=1), 
             hour=0, minute=0, second=0)
-        delta = tomorrow - datetime.datetime.now()
+        
+        noon = datetime.datetime.now().replace(hour=12, minute=0, second=0)
+        
+        now = datetime.datetime.now()
+
+        delta = noon - now
+        if delta.days < 0: # It's afternoon now, wait until midnight.
+            delta = midnight - now
+
         print("Current time : " + time.strftime("%Y-%m-%d %H:%M:%S"))
         print("Sleep for " + str(delta.seconds) + " seconds..."
             "do not close this window and the web driver.")
@@ -120,7 +127,7 @@ if __name__ == '__main__':
     atb = AutoBookseatTKB('AutoBookseatTKB-settings.json')
     atb.login()
 
-    atb.wait_until_tomorrow()
+    atb.wait_until_noon_or_midnight()
     atb.refresh()
 
     atb.select_class()

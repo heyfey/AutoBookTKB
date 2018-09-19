@@ -6,7 +6,7 @@ print("Test started...")
 atb = AutoBookseatTKB('AutoBookseatTKB-settings.json')
 atb.login()
 
-# atb.wait_until_tomorrow()
+# atb.wait_until_noon_or_midnight()
 atb.refresh()
 
 atb.select_class()
