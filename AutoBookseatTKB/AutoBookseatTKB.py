@@ -117,8 +117,18 @@ class AutoBookseatTKB:
             if self.driver.find_elements_by_xpath('//input[@value="%d"]' % i):
                 self.driver.find_element_by_xpath('//input[@value="%d"]' % i).click()
 
-    def accept_alert(self):
+    def accept_alerts(self):
+        """Keep accepting alerts until there's a result."""
+        while self.wait.until(EC.alert_is_present()):
+            if self.accept_one_alert():
+                break
+
+    def accept_one_alert(self):
         alert = self.driver.switch_to_alert()
+        mylist = [u'已滿', u'請勾選場次時間', u'預約成功', u'請選擇', u'異常']
+        for s in mylist:
+            if s in alert.text:
+                return True
         alert.accept()
 
 
@@ -136,6 +146,6 @@ if __name__ == '__main__':
     atb.select_date()
     atb.select_sessions()
     atb.click_send()
-    atb.accept_alert()
+    atb.accept_alerts()
     print("Task completed. Plese check your booking:)")
     
