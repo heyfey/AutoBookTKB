@@ -8,7 +8,7 @@ import sys
 class AutoBookTKB_GUI:
 
     def __init__(self, master): 
-        self.load_json('AutoBookseatTKB-settings.json')
+        self.load_json('AutoBookTKB-settings.json')
 
         self.master = master
         self.master.title("AutoBookTKB")
@@ -75,7 +75,7 @@ class AutoBookTKB_GUI:
     def send(self):
         self.print_log()
         self.update_settings()
-        self.update_json('AutoBookseatTKB-settings.json')
+        self.update_json('AutoBookTKB-settings.json')
         self.auto_book()
 
     def print_log(self):
@@ -148,8 +148,8 @@ class AutoBookTKB_GUI:
         self.send_button.place(x=160, y=440)
 
     def auto_book(self):
-        from AutoBookseatTKB import AutoBookseatTKB
-        atb = AutoBookseatTKB('AutoBookseatTKB-settings.json')
+        from AutoBookTKB import AutoBookTKB
+        atb = AutoBookTKB('AutoBookTKB-settings.json')
         atb.main()
 
 

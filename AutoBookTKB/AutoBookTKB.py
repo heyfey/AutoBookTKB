@@ -7,7 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-class AutoBookseatTKB:
+class AutoBookTKB:
 
     def __init__(self, settings):
         import json
@@ -153,6 +153,6 @@ class AutoBookseatTKB:
 
 
 if __name__ == '__main__':
-    atb = AutoBookseatTKB('AutoBookseatTKB-settings.json')
+    atb = AutoBookTKB('AutoBookTKB-settings.json')
     atb.main()
     
