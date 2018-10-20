@@ -15,6 +15,7 @@ class AutoBookseatTKB:
             self.settings = json.load(fp)
         with open('locationList.json', 'r', encoding="utf-8") as fp:
             self.location_list = json.load(fp)
+        fp.close()
 
         self.driver = webdriver.Chrome()
         self.driver.get("http://bookseat.tkblearning.com.tw/book-seat/student/bookSeat/index")
@@ -124,28 +125,34 @@ class AutoBookseatTKB:
                 break
 
     def accept_one_alert(self):
-        alert = self.driver.switch_to_alert()
+        alert = self.driver.switch_to_alert()        
+        print('**' + alert.text + '**')
+
         mylist = [u'已滿', u'請勾選場次時間', u'預約成功', u'請選擇', u'異常']
         for s in mylist:
             if s in alert.text:
                 return True
+
         alert.accept()
+
+    def main(self):
+        print("Mission started...")
+        self.login()
+
+        self.wait_until_noon_or_midnight()
+        self.refresh()
+
+        self.select_class()
+        self.send_securitycode()
+        self.select_location()
+        self.select_date()
+        self.select_sessions()
+        self.click_send()
+        self.accept_alerts()
+        print("Task completed. Plese check your booking:)")
 
 
 if __name__ == '__main__':
-    print("Mission started...")
     atb = AutoBookseatTKB('AutoBookseatTKB-settings.json')
-    atb.login()
-
-    atb.wait_until_noon_or_midnight()
-    atb.refresh()
-
-    atb.select_class()
-    atb.send_securitycode()
-    atb.select_location()
-    atb.select_date()
-    atb.select_sessions()
-    atb.click_send()
-    atb.accept_alerts()
-    print("Task completed. Plese check your booking:)")
+    atb.main()
     

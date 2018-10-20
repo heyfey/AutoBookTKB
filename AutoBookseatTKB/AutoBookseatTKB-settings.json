@@ -1,7 +1,11 @@
 {
-	"id": "L123456789",
-	"password": "L123456789",	
-	"classIndex": 1,
-	"location": "逢甲數位學堂",
-	"sessions": [1, 2, 3]
+    "id": "L123456789",
+    "password": "L123456789",
+    "classIndex": "1",
+    "location": "逢甲數位學堂",
+    "sessions": [
+        1,
+        2,
+        3
+    ]
 }
