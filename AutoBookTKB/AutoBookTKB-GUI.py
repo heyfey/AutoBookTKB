@@ -4,6 +4,7 @@ import tkinter as tk
 from tkinter import ttk
 import json
 import sys
+import threading
 
 class AutoBookTKB_GUI:
 
@@ -76,7 +77,8 @@ class AutoBookTKB_GUI:
         self.print_log()
         self.update_settings()
         self.update_json('AutoBookTKB-settings.json')
-        self.auto_book()
+        t = threading.Thread(target=self.auto_book)
+        t.start()
 
     def print_log(self):
         # sys.stdout = __redirection__(self.console)
