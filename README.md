@@ -9,7 +9,7 @@
 3. 用[python](https://www.python.org/downloads/)執行 **_AutoBookTKB-GUI.py_**  (`python AutoBookTKB-GUI.py`)
   
 --------------------------
-**預覽：**
+**Preview：**
   
 ![](https://i.imgur.com/zt4GWnU.png)
   
