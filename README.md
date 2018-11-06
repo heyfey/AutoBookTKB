@@ -7,6 +7,7 @@
 1. 請直接下載完整的專案。
 2. 將`AutoBookTKB`資料夾中的網頁驅動(`chromedriver.exe`)，替換成與作業系統對應的驅動軟體(在`chromedriver`資料夾中)
 3. 用[python](https://www.python.org/downloads/)執行 **_AutoBookTKB-GUI.py_**  (`python AutoBookTKB-GUI.py`)
+4. Required package：[Selenium ](https://selenium-python.readthedocs.io/installation.html)
   
 --------------------------
 **Preview：**
